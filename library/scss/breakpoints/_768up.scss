@@ -1,0 +1,392 @@
+/******************************************************************
+Site Name: Honey
+Author: Vic Lobins
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+******************************************************************/
+
+
+/*********************
+GENERAL STYLES
+*********************/
+
+html {
+	font-size: 14px;
+}
+
+body {}
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+
+.wrap {
+	width: 760px;
+}
+
+#home_slider {
+	.sa_hover_container {
+		@include prefix(flex-direction, row, webkit ms);
+	}
+}
+
+/*********************
+HEADER STYLES
+*********************/
+
+.header {
+}
+
+#inner-header {
+	position: relative;
+}
+
+.logo {
+	position: absolute;
+	display: block;
+	width: 13rem;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	font-size: 0;
+	padding: 2rem 2.75rem;
+	margin: 0;
+	background: $white;
+	@include box-sizing(content-box);
+	
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	a {
+		color: $black;
+	}
+	
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		border-top: 4.25rem solid $white;
+		border-right: 2.85rem solid transparent;
+		z-index: -1;
+		right: -2.85rem;
+		bottom: 0;
+	}
+	
+	.footer & {
+		background: darken($blue, 10%);
+		width: 7rem;
+		padding: 1.2rem;
+		
+		&:after {
+			border-top: 5rem solid darken($blue, 10%);
+			border-right: 2.85rem solid transparent;
+		}
+	}
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+.menu-button {
+	display: none;
+}
+
+.nav {
+	.menu-item {
+		display: inline-block;
+		
+		a {
+			text-decoration: none;
+		}
+	}
+}
+
+.socket {
+	display: block;
+	background: lighten($gray, 35%);
+	text-align: right;
+	font-size: 0.675rem;
+	padding: 0.75em 1em;
+}
+
+.socket-nav {
+	display: inline-block;
+	margin: 4px 0 0 0;
+	vertical-align: middle;
+	
+	> li {
+		> a {
+			color: $white;
+			margin: 0 1em;
+			
+			&:before {
+				content: "\007c";
+				display: inline-block;
+				margin-right: 2em;
+				color: $white !important;
+			}
+			
+			&:hover, &:focus {
+				color: $blue;
+			}
+		}
+		
+		&:first-child {
+			a:before {
+				content: '';
+				display: none;
+			}
+		}
+	}
+}
+
+.search-box {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1em;
+	
+	#s {
+		background: none;
+		color: $white;
+		border-bottom: 1px solid $white;
+		border-left: none;
+		border-top: none;
+		border-right: none;
+		outline: none;
+		padding: 0;
+		width: 190px;
+		font-size: 0.675rem;
+		
+		@include placeholder {
+			color: $white;
+		}
+	}
+	
+	button {
+		top: 1px;
+		left: -2px;
+		position: relative;
+		border: none;
+		outline: none;
+		background: none;
+		padding: 0;
+		color: $white;
+	}
+}
+
+.primary-nav {
+	margin: 0 auto;
+    text-align: center;
+    padding-left: 18.5rem;
+
+	> li {
+		> a {
+			display: block;
+			position: relative;
+			font-weight: 500;
+			color: $blue;
+			outline: none;
+			padding: 1.75rem 1.75em;
+			
+			&:hover,
+			&:focus {
+				color: $gray;
+			}
+			
+			&:before {
+				content: '';
+				position: absolute;
+				display: block;
+				bottom: 0;
+				left: 0;
+				width: 0%;
+				height: 7px;
+				background: $blue;
+				@include transition(width 0.5s ease-in-out);
+			}
+			
+			&:after {
+				content: '';
+				position: absolute;
+				display: block;
+				bottom: 0;
+				left: 0;
+				width: 0;
+				height: 0;
+				border-top: 7px solid $white;
+				border-right: 5px solid transparent;
+			}
+			
+			&.active {
+				color: $gray;
+				
+				&:before {
+					width: 100%;
+				}
+			}
+		}
+
+		ul.sub-menu,
+		ul.children {
+			position: absolute;
+			background: rgba($blue, .9);
+			width: 100%;
+			width: calc(100% - 18.5rem);
+			opacity: 0;
+			visibility: hidden;
+			top: 4.75rem;
+			right: 200%;
+			margin: 0;
+			padding: 1.05rem 0 1.05rem 2.5rem;
+			text-align: left;
+			font-size: 0;
+			z-index: 8;
+			@include transition (all 1s ease-out);
+			
+			&.active {
+				right: 0%;
+				opacity: 1;
+				visibility: visible;
+			}
+
+			li {
+				vertical-align: middle;
+				text-align: left;
+				width: 8rem;
+				padding: 0 1rem;
+
+				a {
+					color: $white;
+					font-weight: bold;
+					font-size: 0.825rem;
+					
+					&:hover,
+					&:focus {
+						text-decoration: underline;
+						text-decoration-style: dotted;
+					}
+				}
+
+			}
+			
+			&:after {
+				content: '';
+				position: absolute;
+				display: block;
+				width: 0;
+				height: 0;
+				border-top: 4.25rem solid rgba($blue, .9);
+				border-right: 2.85rem solid transparent;
+				z-index: -1;
+				right: -2.85rem;
+				top: 0;
+			}
+			
+			/* highlight sub-menu current page */
+			li.current-menu-item,
+			li.current_page_item,
+			li.current_page_ancestor {
+				a {}
+			}
+		}
+
+	} /* end .menu li */
+
+	/* highlight current page */
+	> li.current_page_item,
+	> li.current-menu-ancestor,
+	> li.current-menu-item,
+	> li.current_page_ancestor {
+		> a {}
+	}
+}
+
+.mobile-links {
+	display: none !important;
+}
+
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+
+.detail-top {
+	position: absolute;
+	height: 40%;
+    width: 10%;
+	top: 0;
+	right: 0;
+	background: rgba($alt-blue, .6);
+	mix-blend-mode: multiply;
+	
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		border-top: 50rem solid rgba(0, 165, 219, 0.6);
+    	border-left: 25rem solid transparent;
+		z-index: -1;
+		left: -25rem;
+		bottom: 0;
+		z-index: 1;
+	}
+	
+	.home & {
+		display: none;
+	}
+}
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+
+.sidebar {
+	margin-top: 2.2em;
+}
+
+	.widgettitle {
+		border-bottom: 2px solid #444;
+		margin-bottom: 0.75em;
+	}
+
+	.widget {
+		padding: 0 10px;
+		margin: 2.2em 0;
+
+		ul {
+			li {
+				margin-bottom: 0.75em;
+
+				&:first-child {}
+				&:last-child {}
+				a {}
+				/* deep nesting */
+
+				ul {
+					margin-top: 0.75em;
+					padding-left: 1em;
+				}
+			}
+		}
+	}
+
+
+/*********************
+FOOTER STYLES
+*********************/
+
+.footer-links {
+} /* end .footer-links */
+
+.copyright {
+	margin: 0;
+	text-align: left;
+}
