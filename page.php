@@ -40,6 +40,24 @@
 								<?php endif; ?>
 								
 								
+								<?php // LOCATIONS ?>
+								<?php if( is_page('about-us') ) : ?>
+									<section class="locations">
+										<img src="<?php echo get_template_directory_uri(); ?>/library/images/world-map.png" alt="World Map">
+										<?php if( have_rows('locations') ) : while( have_rows('locations') ): the_row(); ?>
+											<div class="pin<?php echo ' ' . str_replace('&', '', str_replace(' ', '-', strtolower( get_sub_field('country') ))); ?>">
+												<img src="<?php echo get_template_directory_uri(); ?>/library/images/icon-pin.png" alt="<?php echo get_sub_field('country'); ?>">
+												
+												<div class="description cf">
+													<h3><?php echo get_sub_field('country'); ?></h3>
+													<?php echo the_sub_field('copy'); ?>
+												</div>
+											</div>
+										<?php endwhile; endif; ?>
+									</section>
+								<?php endif; ?>
+								
+								
 								<?php // ROLLOVERS ?>
 								<?php if( have_rows('rollover_link') ): ?>
 									<section class="flex cf">
@@ -50,8 +68,12 @@
 											<h4><?php echo get_sub_field('title'); ?></h4>
 											
 											<div class="rollover-content">
-												<a href="<?php echo get_sub_field('link'); ?>" class="btn primary-btn">More</a>
-												<p><?php echo get_sub_field('copy'); ?></p>
+												<?php if( get_sub_field('link') ) : ?>
+													<a href="<?php echo get_sub_field('link'); ?>" class="btn primary-btn">More</a>
+												<?php endif; ?>
+												<?php if( get_sub_field('copy') ) : ?>
+													<p><?php echo get_sub_field('copy'); ?></p>
+												<?php endif; ?>
 											</div>
 										</div>
 										

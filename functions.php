@@ -214,4 +214,15 @@ function bones_fonts() {
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
 
+
+//Page Slug Body Class
+function add_slug_body_class( $classes ) {
+	global $post;
+	if( isset( $post ) ) {
+		$classes[] = $post->post_type . '-' . $post->post_name;
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+
 /* DON'T DELETE THIS CLOSING TAG */ ?>

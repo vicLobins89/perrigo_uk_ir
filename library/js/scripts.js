@@ -39,5 +39,9 @@ jQuery(document).ready(function($) {
 			$(this).css('width', (100/$children.length)+'%');
 		});
 	});
+	
+	$('.pin').on('click', function(){
+		$(this).toggleClass('active');
+	});
 
 });
