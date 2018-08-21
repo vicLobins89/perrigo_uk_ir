@@ -33,13 +33,6 @@ jQuery(document).ready(function($) {
 		$(this).next('.sub-menu').toggleClass('active');
 	});
 	
-	$('.sub-menu').each(function(){
-		var $children = $(this).children();
-		$children.each(function(){
-			$(this).css('width', (100/$children.length)+'%');
-		});
-	});
-	
 	$('.pin').on('click', function(){
 		$(this).toggleClass('active');
 	});

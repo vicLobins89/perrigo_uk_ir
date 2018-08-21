@@ -2,28 +2,47 @@
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+				<div id="inner-content" class="cf">
 
-					<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+					<div id="main" class="col-8 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<?php
-								/*
-								 * Ah, post formats. Nature's greatest mystery (aside from the sloth).
-								 *
-								 * So this function will bring in the needed template file depending on what the post
-								 * format is. The different post formats are located in the post-formats folder.
-								 *
-								 *
-								 * REMEMBER TO ALWAYS HAVE A DEFAULT ONE NAMED "format.php" FOR POSTS THAT AREN'T
-								 * A SPECIFIC POST FORMAT.
-								 *
-								 * If you want to remove post formats, just delete the post-formats folder and
-								 * replace the function below with the contents of the "format.php" file.
-								*/
-								get_template_part( 'post-formats/format', get_post_format() );
-							?>
+						<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
+
+						<section class="entry-content cf" itemprop="articleBody">
+							<h1 class="entry-title single-title" itemprop="headline" rel="bookmark"><?php the_title(); ?></h1>
+
+						  <p class="byline entry-meta vcard">
+
+							<?php printf( __( 'Posted', 'bonestheme' ).' %1$s %2$s',
+							   /* the time the post was published */
+							   '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
+							   /* the author of the post */
+							   '<span class="by">'.__( 'by', 'bonestheme' ).'</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
+							); ?>
+
+						  </p>
+							
+						  <?php
+							the_content();
+							wp_link_pages( array(
+							  'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'bonestheme' ) . '</span>',
+							  'after'       => '</div>',
+							  'link_before' => '<span>',
+							  'link_after'  => '</span>',
+							) );
+						  ?>
+							
+							<?php printf( __( 'filed under', 'bonestheme' ).': %1$s', get_the_category_list(', ') ); ?>
+
+						  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
+						</section> <?php // end article section ?>
+
+						<?php //comments_template(); ?>
+
+					  </article>
+						<?php // end article ?>
 
 						<?php endwhile; ?>
 
@@ -43,9 +62,11 @@
 
 						<?php endif; ?>
 
-					</main>
+					</div>
 
-					<?php get_sidebar(); ?>
+					<aside class="col-4 cf">
+						<?php get_sidebar(); ?>
+					</aside>
 
 				</div>
 

@@ -2,34 +2,23 @@
 
 			<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+				<div id="inner-content" class="cf">
 
-						<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
-
-							<?php
-							the_archive_title( '<h1 class="page-title">', '</h1>' );
-							the_archive_description( '<div class="taxonomy-description">', '</div>' );
-							?>
+						<div id="main" class="col-8 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
 							
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'cf' ); ?> role="article">
 
-								<header class="entry-header article-header">
-
+								<section class="entry-content cf">
 									<h3 class="h2 entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+									
 									<p class="byline entry-meta vcard">
-										<?php printf( __( 'Posted', 'bonestheme' ).' %1$s %2$s',
+										<?php printf( __( 'Posted', 'bonestheme' ).' %1$s',
                   							     /* the time the post was published */
-                  							     '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>',
-                       								/* the author of the post */
-                       								'<span class="by">'.__('by', 'bonestheme').'</span> <span class="entry-author author" itemprop="author" itemscope itemptype="http://schema.org/Person">' . get_the_author_link( get_the_author_meta( 'ID' ) ) . '</span>'
+                  							     '<time class="updated entry-time" datetime="' . get_the_time('Y-m-d') . '" itemprop="datePublished">' . get_the_time(get_option('date_format')) . '</time>'
                     							); ?>
 									</p>
-
-								</header>
-
-								<section class="entry-content cf">
 
 									<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
 
@@ -37,15 +26,11 @@
 
 								</section>
 
-								<footer class="article-footer">
-
-								</footer>
-
 							</article>
 
 							<?php endwhile; ?>
 
-									<?php bones_page_navi(); ?>
+								<?php bones_page_navi(); ?>
 
 							<?php else : ?>
 
@@ -63,9 +48,11 @@
 
 							<?php endif; ?>
 
-						</main>
-
-					<?php get_sidebar(); ?>
+						</div>
+					
+					<aside class="col-4 cf">
+						<?php get_sidebar(); ?>
+					</aside>
 
 				</div>
 

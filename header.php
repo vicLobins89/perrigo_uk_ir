@@ -64,7 +64,7 @@
 					}
 					?>
 					
-					
+					<a class="menu-button" title="Main Menu"></a>
 					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 						<?php wp_nav_menu(array(
     					         'container' => false,

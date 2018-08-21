@@ -60,7 +60,7 @@
 								
 								<?php // ROLLOVERS ?>
 								<?php if( have_rows('rollover_link') ): ?>
-									<section class="flex cf">
+									<section class="flex rollover-wrapper cf">
 									<?php while( have_rows('rollover_link') ): the_row(); ?>
 										
 										<div class="flex-panel rollover"
@@ -86,18 +86,37 @@
 								<?php if( have_rows('rows') ): ?>
 									<?php while( have_rows('rows') ): the_row(); ?>
 										
-										<section class="row cf">
-										<div class="max-width cf<?php if( get_sub_field('wrap') ) { echo ' wrap entry-content'; }  ?>">
+										<?php
+										$layout = get_sub_field('layout');
+										$sliderObject = get_sub_field('slider');
+										$stylise = '';
+										if( get_sub_field('stylise_columns') ) {
+											$stylise = 'stylise';
+										}
+										if( $layout === 'hide' ) {
+											echo '<section class="row cf" style="display: none;">';
+											echo '<div class="max-width cf">';
+										} else if( $layout === 'wrap' ) {
+											echo '<section class="row cf '.$stylise.'">';
+											echo '<div class="max-width cf wrap entry-content">';
+										} else if( $layout === 'full' ) {
+											echo '<section class="row full cf '.$stylise.'">';
+											echo '<div class="cf">';
+										} else {
+											echo '<section class="row cf '.$stylise.'">';
+											echo '<div class="max-width cf">';
+										}
+										?>
 											
 										<?php if( get_sub_field('title') ) : ?>
-											<h2><?php echo get_sub_field('title'); ?></h2>
+											<h2 class="row-title"><?php echo get_sub_field('title'); ?></h2>
 										<?php endif; ?>
 
-										<?php if( get_sub_field('column_size') == '1col' ) : ?>
+										<?php if( get_sub_field('column_size') === '1col' ) : ?>
 
 											<div class="col-12"><?php the_sub_field('col1'); ?></div>
 
-										<?php elseif( get_sub_field('column_size') == '2col' ) : ?>
+										<?php elseif( get_sub_field('column_size') === '2col' ) : ?>
 
 											<div class="cf col-6">
 												<?php the_sub_field('col2_a'); ?>
@@ -107,7 +126,7 @@
 												<?php the_sub_field('col2_b'); ?>
 											</div>
 
-										<?php elseif( get_sub_field('column_size') == '3col' ) : ?>
+										<?php elseif( get_sub_field('column_size') === '3col' ) : ?>
 
 											<div class="col-4">
 												<?php the_sub_field('col3_a'); ?>
@@ -121,7 +140,7 @@
 												<?php the_sub_field('col3_c'); ?>
 											</div>
 
-										<?php elseif( get_sub_field('column_size') == '4col' ) : ?>
+										<?php elseif( get_sub_field('column_size') === '4col' ) : ?>
 
 											<div class="col-3">
 												<?php the_sub_field('col4_a'); ?>
@@ -141,22 +160,42 @@
 
 										<?php endif; ?>
 											
-										</div>
+										<?php if( !$sliderObject ) { echo '</div>'; } ?>
 										</section>
-								
-										<?php
-										$sliderObject = get_sub_field('slider');
-										if( $sliderObject ) {
-											$post = $sliderObject;
-											setup_postdata($post);
-											echo '<section class="slider">' . do_shortcode('[slide-anything id="'.get_the_ID().'"]') . '</section>';
-											wp_reset_postdata();
-										}
-										?>
 								
 									<?php endwhile; ?>
 								<?php endif; ?>
-								
+							
+							
+								<?php // IMAGE LINKS ?>
+								<?php if( have_rows('image_links') ): ?>
+								<section class="row image-links cf">
+									<div class="max-width flex cf">
+									<?php while( have_rows('image_links') ): the_row(); ?>
+										<div class="col-4">
+											<div class="main-image">
+												<img src="<?php the_sub_field('main_image'); ?>" alt="<?php the_sub_field('title'); ?>">
+												
+												<div class="img-overlay">
+													<img src="<?php the_sub_field('secondary_image'); ?>" alt="<?php the_sub_field('title'); ?>">
+												</div>
+											</div>
+											
+											<h3>
+												<?php
+												if( get_sub_field('link') ) {
+													echo '<a href="'.get_sub_field('link').'" target="_blank">'.get_sub_field('title').'</a>';
+												} else {
+													echo get_sub_field('title');
+												}
+												?>
+											</h3>
+										</div>
+									<?php endwhile; ?>
+									</div>
+								</section>
+								<?php endif; ?>
+							
 								
 								<?php // BLOG HIGHLIGHTS (IF HOME PAGE) ?>
 								<?php if ( is_front_page() && ($options['case_studies_switch']) ) : ?>

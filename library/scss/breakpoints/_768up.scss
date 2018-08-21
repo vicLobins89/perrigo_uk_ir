@@ -6,7 +6,6 @@ Stylesheet: Tablet & Small Desktop Stylesheet
 
 ******************************************************************/
 
-
 /*********************
 GENERAL STYLES
 *********************/
@@ -17,18 +16,17 @@ html {
 
 body {}
 
+
 /*********************
-LAYOUT & GRID STYLES
+FONT STYLES
 *********************/
 
-.wrap {
-	width: 760px;
+p, .p {
+	font-size: 1em;
 }
 
-#home_slider {
-	.sa_hover_container {
-		@include prefix(flex-direction, row, webkit ms);
-	}
+.narrow-para {
+	max-width: 60%;
 }
 
 /*********************
@@ -36,6 +34,8 @@ HEADER STYLES
 *********************/
 
 .header {
+	position: relative;
+	font-size: 0.8rem;
 }
 
 #inner-header {
@@ -43,38 +43,18 @@ HEADER STYLES
 }
 
 .logo {
-	position: absolute;
-	display: block;
-	width: 13rem;
+	width: 9rem;
+    height: 6rem;
 	top: 0;
 	left: 0;
-	z-index: 10;
-	font-size: 0;
-	padding: 2rem 2.75rem;
-	margin: 0;
-	background: $white;
-	@include box-sizing(content-box);
-	
-	img {
-		max-width: 100%;
-		height: auto;
-	}
-
-	a {
-		color: $black;
-	}
+	padding: 1rem .5rem 1rem 1.75rem;
 	
 	&:after {
-		content: '';
-		position: absolute;
-		display: block;
-		width: 0;
-		height: 0;
 		border-top: 4.25rem solid $white;
-		border-right: 2.85rem solid transparent;
-		z-index: -1;
-		right: -2.85rem;
-		bottom: 0;
+	}
+	
+	img {
+		margin: 1.5rem 0;
 	}
 	
 	.footer & {
@@ -181,18 +161,22 @@ NAVIGATION STYLES
 }
 
 .primary-nav {
-	margin: 0 auto;
-    text-align: center;
+	position: relative;
     padding-left: 18.5rem;
+	max-height: none;
+	background: none;
+	overflow: visible;
 
 	> li {
+		border: none;
+		padding: 0;
+		
 		> a {
-			display: block;
-			position: relative;
-			font-weight: 500;
 			color: $blue;
 			outline: none;
 			padding: 1.75rem 1.75em;
+			font-size: 1em;
+			border: none;
 			
 			&:hover,
 			&:focus {
@@ -228,6 +212,7 @@ NAVIGATION STYLES
 				
 				&:before {
 					width: 100%;
+					background: $blue !important;
 				}
 			}
 		}
@@ -235,12 +220,14 @@ NAVIGATION STYLES
 		ul.sub-menu,
 		ul.children {
 			position: absolute;
+			overflow: visible;
 			background: rgba($blue, .9);
 			width: 100%;
-			width: calc(100% - 18.5rem);
+			width: calc(100% - 10rem);
+			height: 3.5rem;
 			opacity: 0;
 			visibility: hidden;
-			top: 4.75rem;
+			top: 4.5rem;
 			right: 200%;
 			margin: 0;
 			padding: 1.05rem 0 1.05rem 2.5rem;
@@ -258,13 +245,21 @@ NAVIGATION STYLES
 			li {
 				vertical-align: middle;
 				text-align: left;
-				width: 8rem;
+				display: inline-block;
 				padding: 0 1rem;
+				border: none;
 
 				a {
 					color: $white;
 					font-weight: bold;
-					font-size: 0.825rem;
+					font-size: 0.625rem;
+					display: inline;
+    				padding: 0;
+					border: none;
+					
+					br {
+						display: block;
+					}
 					
 					&:hover,
 					&:focus {
@@ -303,7 +298,19 @@ NAVIGATION STYLES
 	> li.current-menu-ancestor,
 	> li.current-menu-item,
 	> li.current_page_ancestor {
-		> a {}
+		> a {
+			&:before {
+				content: '';
+				position: absolute;
+				display: block;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 7px;
+				background: $alt-blue;
+				@include transition(width 0.5s ease-in-out);
+			}
+		}
 	}
 }
 
@@ -315,6 +322,22 @@ NAVIGATION STYLES
 /*********************
 POSTS & CONTENT STYLES
 *********************/
+
+.featured-image {
+	width: 100%;
+    margin-left: auto;
+}
+
+.page-title {
+	left: 10%;
+	width: 60%;
+	font-size: 1rem;
+	
+	.home &, .page-contract-manufacturing & {
+		left: auto;
+		right: 0;
+	}
+}
 
 .detail-top {
 	position: absolute;
@@ -344,6 +367,326 @@ POSTS & CONTENT STYLES
 	}
 }
 
+.entry-content {
+	padding: 5rem 4rem;
+	font-size: 1rem;
+}
+
+
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+
+.wrap {
+	width: 760px;
+	
+	&.entry-content {
+		max-width: 100%;
+	}
+}
+
+.row {
+	padding: 3rem 5rem;
+	
+	.wrap.entry-content {
+		padding: 0 5rem 3rem;
+	}
+	
+	&.stylise {
+		> div {			
+			.col-6 {
+				overflow: hidden;
+
+				&:last-child {
+					padding: 1rem 2rem;
+				}
+			}
+		}
+		
+		&:nth-child(odd) {
+			.col-6 {
+				&:first-child {
+					order: 2;
+				}
+				
+				&:last-child {
+					order: 1;
+				}
+			}
+		}
+	}
+}
+
+#home_slider, #careers_slider {
+	.sa_hover_container {
+		@include prefix(flex-direction, row, webkit ms);
+	}
+}
+
+#home_slider {
+	background: $light-gray;
+	
+	.sa_hover_container {
+		padding: 3% !important;
+		
+		img {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.white .owl-carousel.sa_owl_theme {
+	.sa_hover_container {
+		.col-6 {
+			&.right {
+				order: 2;
+			}
+			
+			&.left {
+				order: 1;
+				background: none;
+				
+				h4 {
+					text-align: left;
+					width: 80%;
+				}
+				
+				p {
+					text-align: left;
+					width: 70%;
+				}
+				
+				&:after, &:before {
+					content: '';
+					position: absolute;
+					display: block;
+					z-index: -1;
+				}
+				&:before {
+					width: 40%;
+					height: 100%;
+					background: $blue;
+					top: 0;
+					left: 0;
+				}
+				&:after {
+					width: 0;
+					height: 0;
+					border-bottom: 50rem solid $blue;
+					border-right: 20rem solid transparent;
+					left: 40%;
+					top: 0;
+				}
+			}
+		}
+	}
+	
+	.owl-nav {
+		button {
+			top: 50%;
+		}
+		
+		.owl-next {
+			background: transparent url(../images/arrows.png) no-repeat -12px -19px !important;
+			background-size: 25px !important;
+		}
+	}
+	
+	.owl-dots {
+		display: block;
+		width: 50% !important;
+		right: 0;
+		bottom: 2.5rem !important;
+		
+		.owl-dot {
+			outline: none;
+			
+			span {
+				width: 12px !important;
+    			height: 12px !important;
+				border: 1px solid $blue !important;
+				background-color: $white !important;
+			}
+			
+			&.active {
+				span {
+					background-color: $blue !important;
+				}
+			}
+		}
+	}
+}
+
+.flex {
+	@include prefix(flex-direction, row, webkit ms);
+	
+	.flex-panel {
+		width: 33.333%;
+	}
+}
+
+.rollover-wrapper {
+	.home & {
+		&:before, &:after {
+			content: '';
+			display: block;
+			position: absolute;
+		}
+		
+		&:before {
+			left: 0;
+			top: -8rem;
+			width: 12rem;
+			height: 8rem;
+			background: $light-gray;
+		}
+		
+		&:after {
+			width: 0;
+			height: 0;
+			border-bottom: 8rem solid $light-gray;
+			border-right: 5rem solid transparent;
+			z-index: -1;
+			left: 12rem;
+			top: -8rem;
+		}
+	}
+}
+
+.rollover {
+	h4 {
+		font-size: 2em;
+	}
+}
+
+.blog-highlights {
+	.narrow-para {
+		max-width: 60%;
+	}
+	
+	h3 {
+		padding-left: 22.25%;
+		font-size: 1.65em;
+	}
+	
+	.post-item {
+		.post-title {
+			width: 70%;
+			margin-left: 2%;
+			margin-top: 0;
+			line-height: 1;
+		}
+		
+		.date {
+			width: 20%;
+		}
+	}
+	
+	p:not(.date) {
+		font-size: 1em;
+		padding-left: 22.75%;
+	}
+}
+
+.image-links {
+	> div {
+		.col-4 {
+			width: 33%;
+		}
+	}
+}
+
+.fts-twitter-div {
+	@include prefix(flex-wrap, nowrap, webkit moz ms);
+	
+	.fts-tweeter-wrap  {
+		width: 33%;
+	}
+}
+
+
+.locations {
+	img {
+		margin: 0;
+	}
+	
+	.pin {
+		.description {
+			display: block;
+			position: absolute;
+			width: auto;
+			height: auto;
+			bottom: 20px;
+			left: 10px;
+			background: $blue;
+			color: $white;
+			font-size: 0.7rem;
+			padding: 1rem;
+			opacity: 0;
+			visibility: hidden;
+			z-index: 11;
+			@include transition(all 0.2s ease-in-out);
+			
+			h3 {
+				position: absolute;
+				height: 2.5rem;
+				background: $blue;
+				left: 0;
+				top: -1.5rem;
+				margin: 0;
+				line-height: 3rem;
+				padding: 0 1rem;
+				text-transform: uppercase;
+				font-family: $condensed;
+				font-size: 2em;
+				
+				&:after {
+					content: '';
+					position: absolute;
+					display: block;
+					width: 0;
+					height: 0;
+					border-bottom: 2.5rem solid $blue;
+					border-right: 1.5rem solid transparent;
+					z-index: -1;
+					right: -1.5rem;
+					top: 0;
+					z-index: 1;
+				}
+			}
+			
+			ul {
+				float: left;
+    			width: 200px;
+				margin-right: 1rem;
+				@include prefix(column-count, 2, webkit moz ms);
+				
+				li {
+					display: inline-block;
+					width: 100%;
+				}
+			}
+			
+			p {
+				width: 130px;
+				margin-bottom: 0;
+				font-size: 0.9em;
+				
+				b, strong {
+					font-size: 1.1em;
+				}
+			}
+		}
+		
+		&.active {
+			.description {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+}
+
 /*********************
 SIDEBARS & ASIDES
 *********************/
@@ -352,39 +695,58 @@ SIDEBARS & ASIDES
 	margin-top: 2.2em;
 }
 
-	.widgettitle {
-		border-bottom: 2px solid #444;
-		margin-bottom: 0.75em;
-	}
+.widgettitle {
+	border-bottom: 2px solid #444;
+	margin-bottom: 0.75em;
+}
 
-	.widget {
-		padding: 0 10px;
-		margin: 2.2em 0;
+.widget {
+	padding: 0 10px;
+	margin: 2.2em 0;
 
-		ul {
-			li {
-				margin-bottom: 0.75em;
+	ul {
+		li {
+			margin-bottom: 0.75em;
 
-				&:first-child {}
-				&:last-child {}
-				a {}
-				/* deep nesting */
-
-				ul {
-					margin-top: 0.75em;
-					padding-left: 1em;
-				}
+			ul {
+				margin-top: 0.75em;
+				padding-left: 1em;
 			}
 		}
 	}
+}
 
 
 /*********************
 FOOTER STYLES
 *********************/
 
+.footer {
+	padding: 2.5rem 4rem;
+	
+	&:before {
+		width: 15%;
+		height: 220%;
+	}
+	
+	&:after {
+		right: 15%;
+		top: -120%;
+	}
+}
+
 .footer-links {
-} /* end .footer-links */
+	margin: 0;
+	
+	ul {
+		padding-right: 10%;
+
+		li {
+			margin: 0 2rem;
+			font-size: 1em;
+		}
+	}
+}
 
 .copyright {
 	margin: 0;

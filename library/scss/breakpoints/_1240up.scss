@@ -13,3 +13,19 @@ html {
 .wrap {
   width: 1200px;
 }
+
+.primary-nav {
+    > li {
+		ul.sub-menu,
+		ul.children {
+			li {
+				padding: 0 1.15rem;
+
+				a {	
+					font-size: 0.825rem;
+				}
+
+			}
+		}
+	}
+}

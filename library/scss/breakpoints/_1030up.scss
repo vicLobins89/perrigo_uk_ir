@@ -13,3 +13,82 @@ html {
 .wrap {
 	width: 1020px;
 }
+
+.header {
+	font-size: 1rem;
+}
+
+.logo {
+	width: 13rem;
+	height: 5rem;
+	padding: 2rem 2.75rem;
+	
+	img {
+		margin: 0;
+	}
+}
+
+.primary-nav {
+    > li {
+		ul.sub-menu,
+		ul.children {
+			width: calc(100% - 18.5rem);
+			height: 4.25rem;
+			top: 4.75rem;
+
+			li {
+				padding: 0.5rem 1rem;
+
+				a {
+					font-size: 0.625rem;
+				}
+
+			}
+		}
+	}
+}
+
+.row {
+	&.stylise {
+		> div {
+			background: $light-gray;
+			
+			.col-6 {
+				&:last-child {
+					padding: 3rem 1rem 0;
+					padding-right: 10%;
+					
+					&:after {
+						content: '';
+						position: absolute;
+						display: block;
+						z-index: 1;
+						width: 0;
+						height: 0;
+						border-top: 50rem solid $light-gray;
+						border-left: 20rem solid transparent;
+						right: 50%;
+						bottom: 0;
+					}
+				}
+			}
+		}
+		
+		&:nth-child(odd) {
+			.col-6 {
+				
+				&:last-child {
+					padding-left: 10%;
+					padding-right: 1rem;
+					
+					&:after {
+						right: auto;
+						left: 50%;
+						border-right: 20rem solid transparent;
+						border-left: none;
+					}
+				}
+			}
+		}
+	}
+}
