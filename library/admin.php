@@ -144,7 +144,7 @@ function display_theme_panel_fields() {
 		'rh-settings-page_section'
 	);
 	
-	add_settings_field(
+	/*add_settings_field(
 		'twitter_url',
 		'Twitter Profile URL',
 		'display_twitter_el',
@@ -190,7 +190,7 @@ function display_theme_panel_fields() {
 		'display_copyright_el',
 		'rh-settings-page',
 		'rh-settings-page_section'
-	);
+	);*/
 	
 	add_settings_field(
 		'case_studies_switch',

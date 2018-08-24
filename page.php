@@ -27,13 +27,12 @@
 									}
 									?>
 									<div class="detail-bottom"></div>
-									<div class="detail-top"></div>
 								</div>
 								<?php endif; ?>
 								
 								
 								<?php // MAIN CONTENT ?>
-								<?php if( !empty(get_the_content()) ) : ?>
+								<?php if( get_the_content() ) : ?>
 									<section class="entry-content wrap cf" itemprop="articleBody">
 										<?php the_content(); ?>
 									</section>
@@ -89,21 +88,27 @@
 										<?php
 										$layout = get_sub_field('layout');
 										$sliderObject = get_sub_field('slider');
-										$stylise = '';
+										$addClasses = array();
+										$bgColour = '';
 										if( get_sub_field('stylise_columns') ) {
-											$stylise = 'stylise';
+											array_push($addClasses, "stylise");
 										}
+										if( get_sub_field('bg_colour') ) {
+											array_push($addClasses, "bg-colour");
+											$bgColour = ' style="background: '.get_sub_field('bg_colour').';"';
+										}
+								
 										if( $layout === 'hide' ) {
 											echo '<section class="row cf" style="display: none;">';
 											echo '<div class="max-width cf">';
 										} else if( $layout === 'wrap' ) {
-											echo '<section class="row cf '.$stylise.'">';
+											echo '<section class="row cf '.implode(" ", $addClasses).'"'.$bgColour.'>';
 											echo '<div class="max-width cf wrap entry-content">';
 										} else if( $layout === 'full' ) {
-											echo '<section class="row full cf '.$stylise.'">';
+											echo '<section class="row full cf '.implode(" ", $addClasses).'"'.$bgColour.'>';
 											echo '<div class="cf">';
 										} else {
-											echo '<section class="row cf '.$stylise.'">';
+											echo '<section class="row cf '.implode(" ", $addClasses).'"'.$bgColour.'>';
 											echo '<div class="max-width cf">';
 										}
 										?>

@@ -148,6 +148,12 @@ LAYOUT & GRID STYLES
 			padding: 0;
 			margin: 0;
 		}
+		
+		.row-title {
+			color: $gray;
+			text-align: center;
+			font-size: 2em;
+		}
 	}
 	
 	&.stylise {
@@ -189,8 +195,8 @@ LAYOUT & GRID STYLES
 		}
 	}
 	
-	h4 {
-		font-weight: normal;
+	&.bg-colour {
+		padding-bottom: 0;
 	}
 	
 	.wrap.entry-content {
@@ -396,11 +402,11 @@ LAYOUT & GRID STYLES
 		}
 	}
 	
-	&#careers_slider {
+	&#fullBleed_slider {
 		.sa_hover_container {
 			.col-6 {
 				&.left {
-					width: 65%;
+					width: 100%;
 					padding: 0;
 					
 					&:after, &:before {
@@ -409,34 +415,48 @@ LAYOUT & GRID STYLES
 				}
 				
 				&.right {
-					width: 35%;
-					
-					&:after {
-						content: '';
-						position: absolute;
-						display: block;
-						z-index: 1;
-						width: 0;
-						height: 0;
-						border-top: 50rem solid #f6f6f7;
-						border-left: 20rem solid transparent;
-						right: 35%;
-						top: 0;
-					}
+					width: 100%;
+					padding: 2rem;
 				}
 			}
 			
 			h4 {
 				font-weight: normal;
 				font-size: 2em;
-				width: 80%;
+				width: 100%;
 				text-align: center;
 			}
 			
 			p {
-				width: 80%;
+				width: 100%;
 				text-align: center;
 				color: $alt-blue;
+			}
+			
+			.home & {
+				.col-6 {
+					&.left {
+						order: 2;
+					}
+
+					&.right {
+						order: 1;
+						
+						h3 {
+							text-align: center;
+							
+							 a {
+								color: $white;
+								display: inline-block;
+							}
+						}
+						
+						img {
+							width: 60%;
+							margin: auto;
+						}
+					}
+				}
 			}
 		}
 		
@@ -725,6 +745,98 @@ LAYOUT & GRID STYLES
 	}
 }
 
+.features-list {
+	counter-reset: section;
+	display: inline-block;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	@include prefix(justify-content, space-between, webkit ms);
+	@include prefix(flex-wrap, wrap, webkit ms);
+	
+	li {
+		width: 23%;
+		padding: 1rem;
+		font-size: 1rem;
+		background: $light-gray;
+		
+		&:before {
+			counter-increment: section;
+			content: counter(section);
+			font-family: $condensed;
+			font-size: 2em;
+			color: $alt-blue;
+			display: block;
+			text-align: center;
+		}
+		
+		h4 {
+			text-align: center;
+			font-weight: normal;
+		}
+		
+		p {
+			font-size: 0.8em;
+		}
+	}
+	
+	&.inline {
+		display: inline-block;
+		
+		li {
+			position: relative;
+			width: 100%;
+			padding-left: 2rem;
+			background: none;
+			font-size: 1.2rem;
+			
+			&:before {
+				position: absolute;
+				left: 0;
+			}
+		}
+		
+		h4 {
+			text-align: left;
+		}
+	}
+}
+
+.flair {
+	padding-left: 0;
+
+	li {
+		position: relative;
+		list-style-type: none;
+		font-size: 1.15rem;
+		padding-right: 2rem;
+		padding-top: 1rem;
+		margin-bottom: 3rem;
+		
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			width: 6rem;
+			height: 6px;
+		}
+
+		&:before {
+			background: $alt-blue;
+		}
+		
+		&:after {
+			width: 0;
+			height: 0;
+			border-top: 6px solid #fff;
+			border-right: 5px solid transparent;
+		}
+	}
+}
+
 /*********************
 LINK STYLES
 *********************/
@@ -770,7 +882,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-	font-size: 1.65em;
+	font-size: 1.75em;
 	font-weight: 500;
 	margin: 1em 0 0.5em;
 	
@@ -796,10 +908,17 @@ h3, .h3 {
 			@include transition(all 0.2s ease-in-out);
 		}
 	}
+	
+	&.p {
+		a:after {
+			top: 1px;
+		}
+	}
 }
 
 h4, .h4 {
-	font-size: 1.3em;
+	font-size: 1.5em;
+	font-weight: normal;
 	margin: 0.25em 0;
 }
 
@@ -995,7 +1114,10 @@ NAVIGATION STYLES
 
 			li {
 				padding: 0 2.5em;
-				@media only screen and (min-width: 1370px) { padding: 0 2rem !important; }
+				@media only screen and (min-width: 1370px) {
+					padding: 0 2rem !important;
+					padding: 0 2.5vw !important;
+				}
 
 				a {
 					display: block;
@@ -1131,6 +1253,10 @@ POSTS & CONTENT STYLES
 #content {
 	position: relative;
 	font-size: 1rem;
+	
+	&.push {
+		margin-top: 6rem;
+	}
 }
 
 .featured-image {
@@ -1187,15 +1313,15 @@ POSTS & CONTENT STYLES
 		display: block;
 		width: 0;
 		height: 0;
-		border-bottom: 50em solid rgba(0, 165, 219, 0.6);
-    	border-right: 25rem solid transparent;
+		border-top: 40em solid rgba(0, 165, 219, 0.6);
+    	border-right: 15rem solid transparent;
 		z-index: -1;
-		right: -25rem;
+		right: -15rem;
 		top: 0;
 		z-index: 1;
 	}
 	
-	.home &, .page-contract-manufacturing & {
+	.home & {
 		left: auto;
 		right: 0;
 		
@@ -1239,7 +1365,7 @@ POSTS & CONTENT STYLES
 .archive-title, .single-title {
 	text-align: center;
 	color: $gray;
-	margin-bottom: 2rem;
+	margin-bottom: 0;
 }
 
 .archive-description {
@@ -1266,7 +1392,14 @@ POSTS & CONTENT STYLES
 		li {
 			margin-bottom: .5em;
 		}
-
+		
+		&.flair {
+			@extend .flair;
+		}
+		
+		&.col-2 {
+			width: 100%;
+		}
 	}
 
 	ol {
@@ -1441,10 +1574,10 @@ PAGE NAVI STYLES
       padding: 0.75em;
       min-width: 1em;
       display: block;
-      color: $green;
+      color: $blue;
 
       &:hover, &:focus {
-      	background-color: $green;
+      	background-color: $blue;
       	color: $white;
       }
     }
@@ -1452,7 +1585,7 @@ PAGE NAVI STYLES
     .current{
     	cursor: default;
     	color: $white;
-		background-color: $green;
+		background-color: $blue;
     }
 
   } /* end .bones_page_navi */

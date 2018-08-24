@@ -248,7 +248,8 @@ NAVIGATION STYLES
   vertical-align: middle; }
   .socket-nav > li > a {
     color: #fff;
-    margin: 0 1em; }
+    margin: 0 1em;
+    outline: none !important; }
     .socket-nav > li > a:before {
       content: "\007c";
       display: inline-block;
@@ -307,8 +308,8 @@ NAVIGATION STYLES
     .primary-nav > li > a {
       color: #283371;
       outline: none;
-      padding: 1.75rem 1.75em;
-      font-size: 1em;
+      padding: 1.5rem 1.75em;
+      font-size: 0.9em;
       border: none; }
       .primary-nav > li > a:hover, .primary-nav > li > a:focus {
         color: #63656a; }
@@ -345,13 +346,13 @@ NAVIGATION STYLES
       background: rgba(40, 51, 113, 0.9);
       width: 100%;
       width: calc(100% - 10rem);
-      height: 3.5rem;
+      height: 4.1rem;
       opacity: 0;
       visibility: hidden;
-      top: 4.5rem;
+      top: 3.9rem;
       right: 200%;
       margin: 0;
-      padding: 1.05rem 0 1.05rem 2.5rem;
+      padding: 1.4rem 0 1rem 2.5rem;
       text-align: left;
       font-size: 0;
       z-index: 8;
@@ -393,7 +394,7 @@ NAVIGATION STYLES
         display: block;
         width: 0;
         height: 0;
-        border-top: 4.25rem solid rgba(40, 51, 113, 0.9);
+        border-top: 3.65rem solid rgba(40, 51, 113, 0.9);
         border-right: 2.85rem solid transparent;
         z-index: -1;
         right: -2.85rem;
@@ -431,32 +432,16 @@ POSTS & CONTENT STYLES
     left: auto;
     right: 0; }
 
-.detail-top {
-  position: absolute;
-  height: 40%;
-  width: 10%;
-  top: 0;
-  right: 0;
-  background: rgba(0, 165, 219, 0.6);
-  mix-blend-mode: multiply; }
-  .detail-top:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 50rem solid rgba(0, 165, 219, 0.6);
-    border-left: 25rem solid transparent;
-    z-index: -1;
-    left: -25rem;
-    bottom: 0;
-    z-index: 1; }
-  .home .detail-top {
-    display: none; }
-
 .entry-content {
   padding: 5rem 4rem;
   font-size: 1rem; }
+  .entry-content ul.col-2 {
+    padding: 0;
+    list-style-type: disc;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    list-style-position: inside; }
 
 /*********************
 LAYOUT & GRID STYLES
@@ -469,7 +454,15 @@ LAYOUT & GRID STYLES
 .row {
   padding: 3rem 5rem; }
   .row .wrap.entry-content {
-    padding: 0 5rem 3rem; }
+    padding: 0 4rem 3rem; }
+  .row.full .row-title {
+    position: absolute;
+    color: #fff;
+    font-size: 4em;
+    width: 50%;
+    height: 9rem;
+    top: 50%;
+    margin: -4.5rem 25% 0; }
   .row.stylise > div .col-6 {
     overflow: hidden; }
     .row.stylise > div .col-6:last-child {
@@ -478,8 +471,26 @@ LAYOUT & GRID STYLES
     order: 2; }
   .row.stylise:nth-child(odd) .col-6:last-child {
     order: 1; }
+  .row.bg-colour {
+    margin-bottom: 3rem; }
+    .row.bg-colour:before, .row.bg-colour:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0; }
+    .row.bg-colour:before {
+      border-top: 16em solid #fff;
+      border-right: 9rem solid transparent;
+      top: 0;
+      left: 0; }
+    .row.bg-colour:after {
+      border-bottom: 16em solid #fff;
+      border-left: 9rem solid transparent;
+      bottom: 0;
+      right: 0; }
 
-#home_slider .sa_hover_container, #careers_slider .sa_hover_container {
+#home_slider .sa_hover_container, #fullBleed_slider .sa_hover_container {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row; }
@@ -539,6 +550,41 @@ LAYOUT & GRID STYLES
       background-color: #fff !important; }
     .white .owl-carousel.sa_owl_theme .owl-dots .owl-dot.active span {
       background-color: #283371 !important; }
+.white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.left {
+  width: 65%;
+  padding: 0; }
+.white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.right {
+  width: 35%; }
+  .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.right:after {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-top: 50rem solid #f6f6f7;
+    border-left: 20rem solid transparent;
+    right: 35%;
+    top: 0; }
+.white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container h4 {
+  width: 80%; }
+.white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container p {
+  width: 80%; }
+.home .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.left {
+  width: 55%; }
+.home .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.right {
+  width: 45%; }
+  .home .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6.right:after {
+    right: auto;
+    left: 45%;
+    border-top: none;
+    border-bottom: 50rem solid #283371;
+    border-left: none;
+    border-right: 20rem solid transparent; }
+.home .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6 h4 {
+  margin-left: 20%; }
+.home .white .owl-carousel.sa_owl_theme#fullBleed_slider .sa_hover_container .col-6 p {
+  margin-left: 20%; }
 
 .flex {
   -webkit-flex-direction: row;
@@ -659,6 +705,9 @@ LAYOUT & GRID STYLES
   opacity: 1;
   visibility: visible; }
 
+.features-list.inline li {
+  width: 70%; }
+
 /*********************
 SIDEBARS & ASIDES
 *********************/
@@ -713,29 +762,32 @@ html {
   font-size: 16px; }
 
 .wrap {
-  width: 1020px; }
+  width: 930px; }
 
 .header {
   font-size: 1rem; }
 
 .logo {
-  width: 13rem;
-  height: 5rem;
-  padding: 2rem 2.75rem; }
+  width: 11rem;
+  height: 4rem;
+  padding: 1.875rem 2.75rem; }
   .logo img {
     margin: 0; }
 
-.primary-nav > li ul.sub-menu,
-.primary-nav > li ul.children {
-  width: calc(100% - 18.5rem);
-  height: 4.25rem;
-  top: 4.75rem; }
-  .primary-nav > li ul.sub-menu li,
-  .primary-nav > li ul.children li {
-    padding: 0.5rem 1rem; }
-    .primary-nav > li ul.sub-menu li a,
-    .primary-nav > li ul.children li a {
-      font-size: 0.625rem; }
+.primary-nav {
+  padding-left: 16.5rem; }
+  .primary-nav > li ul.sub-menu,
+  .primary-nav > li ul.children {
+    width: calc(100% - 16.5rem);
+    height: 3.65rem;
+    top: 4.1rem;
+    padding: 1.2rem 0 1rem 2.5rem; }
+    .primary-nav > li ul.sub-menu li,
+    .primary-nav > li ul.children li {
+      padding: 0 1rem; }
+      .primary-nav > li ul.sub-menu li a,
+      .primary-nav > li ul.children li a {
+        font-size: 0.625rem; }
 
 .row.stylise > div {
   background: #eeeeee; }

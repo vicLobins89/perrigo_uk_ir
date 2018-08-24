@@ -11,7 +11,7 @@ html {
 }
 
 .wrap {
-	width: 1020px;
+	width: 930px;
 }
 
 .header {
@@ -19,9 +19,9 @@ html {
 }
 
 .logo {
-	width: 13rem;
-	height: 5rem;
-	padding: 2rem 2.75rem;
+	width: 11rem;
+	height: 4rem;
+	padding: 1.875rem 2.75rem;
 	
 	img {
 		margin: 0;
@@ -29,15 +29,18 @@ html {
 }
 
 .primary-nav {
+	padding-left: 16.5rem;
+	
     > li {
 		ul.sub-menu,
 		ul.children {
-			width: calc(100% - 18.5rem);
-			height: 4.25rem;
-			top: 4.75rem;
+			width: calc(100% - 16.5rem);
+			height: 3.65rem;
+			top: 4.1rem;
+			padding: 1.2rem 0 1rem 2.5rem;
 
 			li {
-				padding: 0.5rem 1rem;
+				padding: 0 1rem;
 
 				a {
 					font-size: 0.625rem;

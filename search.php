@@ -1,17 +1,18 @@
 <?php get_header(); ?>
 
-			<div id="content">
+			<div id="content" class="push">
 
 				<div id="inner-content" class="cf">
+					
+					<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'bonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 
-					<div id="main" class="cf" role="main">
+					<div id="main" class="col-8 cf" role="main">
 
 						<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class('col-8 cf'); ?> role="article">
+							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
 
 								<section class="entry-content">
-									<h1 class="archive-title"><span><?php _e( 'Search Results for:', 'bonestheme' ); ?></span> <?php echo esc_attr(get_search_query()); ?></h1>
 									
 									<h3 class="search-title entry-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
@@ -32,14 +33,8 @@
 								</section>
 
 							</article>
-						
-						<aside class="col-4 cf">
-							<?php get_sidebar(); ?>
-						</aside>
 
 						<?php endwhile; ?>
-
-								<?php bones_page_navi(); ?>
 
 							<?php else : ?>
 
@@ -58,8 +53,14 @@
 							<?php endif; ?>
 
 						</div>
+					
+						<aside class="col-4 cf">
+							<?php get_sidebar(); ?>
+						</aside>
 
 					</div>
+				
+				<?php bones_page_navi(); ?>
 
 			</div>
 
