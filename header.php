@@ -44,6 +44,8 @@
 
 			<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 				
+				<div id="consent_blackbar"></div>
+				
 				<div class="socket cf">
 					<div class="search-box"><?php get_search_form(); ?></div>
 					<?php wp_nav_menu(array(

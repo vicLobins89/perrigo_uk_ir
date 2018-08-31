@@ -82,10 +82,11 @@
 								
 								
 								<?php // COLUMNS CONTENT ?>
-								<?php if( have_rows('rows') ): ?>
+								<?php if( have_rows('rows') ): $rowNum = 1; ?>
 									<?php while( have_rows('rows') ): the_row(); ?>
 										
 										<?php
+										$rowNum ++;
 										$layout = get_sub_field('layout');
 										$sliderObject = get_sub_field('slider');
 										$addClasses = array();
@@ -95,6 +96,7 @@
 										}
 										if( get_sub_field('bg_colour') ) {
 											array_push($addClasses, "bg-colour");
+											array_push($addClasses, "bg-colour$rowNum");
 											$bgColour = ' style="background: '.get_sub_field('bg_colour').';"';
 										}
 								

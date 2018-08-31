@@ -50,6 +50,10 @@ img {
 	}
 }
 
+hr {
+	margin: 2.5rem 0;
+}
+
 .aspect-ratio {
 	position: relative;
 	width: 100%;
@@ -177,17 +181,27 @@ LAYOUT & GRID STYLES
 					}
 					
 					p {
-						color: $alt-blue;
+						color: $blue;
 						margin: 0;
 					}
 					
 					ul {
-						list-style-type: disc;
-						padding-left: 1rem;
+						padding-left: 1em;
 						
 						li {
 							line-height: 1.75;
     						margin-bottom: .5rem;
+							
+							&:before {
+								content: "•";
+								color: $alt-blue;
+								display: block;
+								position: relative;
+								max-width: 0;
+								max-height: 0;
+								left: -1em;
+								top: 0;
+							}
 						}
 					}
 				}
@@ -255,6 +269,7 @@ LAYOUT & GRID STYLES
 		color: $white;
 		text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
 		font-size: 3em;
+		font-weight: bold;
 		opacity: 1;
 		top: 0;
 		@include transition(all 0.3s ease-in-out);
@@ -462,6 +477,17 @@ LAYOUT & GRID STYLES
 		
 		.owl-dots {
 			width: 42% !important;
+			
+			.owl-dot {
+				span {
+					background-color: transparent !important;
+					border-color: white !important;
+				}
+				
+				&.active span {
+					background-color: white !important;
+				}
+			}
 		}
 	}
 }
@@ -734,13 +760,16 @@ LAYOUT & GRID STYLES
 		left: 0;
 		bottom: 0;
 		width: 100%;
+		height: 5rem;
 		padding: 1rem;
 		overflow: hidden;
 		background: rgba(255,255,255,0.6);
 		
 		img {
-			height: 3rem;
+			height: auto;
 			width: auto;
+			max-width: 65%;
+			max-height: 100%;
 		}
 	}
 }
@@ -756,9 +785,10 @@ LAYOUT & GRID STYLES
 	@include prefix(flex-wrap, wrap, webkit ms);
 	
 	li {
-		width: 23%;
+		width: 100%;
 		padding: 1rem;
 		font-size: 1rem;
+		margin-bottom: 1rem;
 		background: $light-gray;
 		
 		&:before {
@@ -805,6 +835,10 @@ LAYOUT & GRID STYLES
 
 .flair {
 	padding-left: 0;
+	
+	h3 {
+		margin: 0.5em 0;
+	}
 
 	li {
 		position: relative;
@@ -812,27 +846,13 @@ LAYOUT & GRID STYLES
 		font-size: 1.15rem;
 		padding-right: 2rem;
 		padding-top: 1rem;
+		padding-left: 0;
 		margin-bottom: 3rem;
+		background: url(../images/flair.png) no-repeat 0 0;
+		background-size: 6rem;
 		
 		&:before, &:after {
-			content: '';
-			position: absolute;
-			display: block;
-			top: 0;
-			left: 0;
-			width: 6rem;
-			height: 6px;
-		}
-
-		&:before {
-			background: $alt-blue;
-		}
-		
-		&:after {
-			width: 0;
-			height: 0;
-			border-top: 6px solid #fff;
-			border-right: 5px solid transparent;
+			display: none;
 		}
 	}
 }
@@ -883,7 +903,7 @@ h2, .h2 {
 
 h3, .h3 {
 	font-size: 1.75em;
-	font-weight: 500;
+	font-weight: normal;
 	margin: 1em 0 0.5em;
 	
 	a {
@@ -1274,7 +1294,6 @@ POSTS & CONTENT STYLES
 	width: 30%;
 	bottom: 1rem;
 	padding: 3rem;
-	min-height: 23rem;
 	z-index: 100;
 
 	h1 {
@@ -1300,7 +1319,7 @@ POSTS & CONTENT STYLES
 
 .detail-bottom {
 	position: absolute;
-	height: 51%;
+	height: 40%;
     width: 36%;
 	bottom: 0;
 	left: 0;
@@ -1319,18 +1338,6 @@ POSTS & CONTENT STYLES
 		right: -15rem;
 		top: 0;
 		z-index: 1;
-	}
-	
-	.home & {
-		left: auto;
-		right: 0;
-		
-		&:after {
-			right: auto;
-			left: -25rem;
-			border-right: none;
-			border-left: 25rem solid transparent;
-		}
 	}
 }
 
@@ -1386,11 +1393,23 @@ POSTS & CONTENT STYLES
 
 	ul {
 		list-style-type: disc;
-		padding-left: 1em;
 		margin-bottom: 2em;
 
 		li {
 			margin-bottom: .5em;
+			padding-left: 1em;
+			list-style-type: none;
+			
+			&:before {
+				content: '\2022';
+				display: block;
+				position: relative;
+				max-width: 0;
+				max-height: 0;
+				left: -1em;
+				top: 0;
+				color: $alt-blue;
+			}
 		}
 		
 		&.flair {
@@ -1921,6 +1940,14 @@ FOOTER STYLES
 		}
 
 	}
+}
+
+#teconsent > a {
+	font-size: 1.2rem;
+    text-align: center;
+    margin: auto;
+    display: block;
+    margin-bottom: 2rem;
 }
 
 .copyright {

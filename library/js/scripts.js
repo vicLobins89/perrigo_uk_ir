@@ -28,12 +28,13 @@ jQuery(document).ready(function($) {
 	$('#menu-main-menu > .menu-item-has-children > a').on('click', function(e){
 		e.preventDefault();
 		$('#menu-main-menu > .menu-item-has-children > a').not( $(this) ).removeClass('active');
-		$('.sub-menu').not( $(this).next('.sub-menu') ).removeClass('active');
 		$(this).toggleClass('active');
+		$('.sub-menu').not( $(this).next('.sub-menu') ).removeClass('active');
 		$(this).next('.sub-menu').toggleClass('active');
 	});
 	
 	$('.pin').on('click', function(){
+		$('.pin').not(this).removeClass('active');
 		$(this).toggleClass('active');
 	});
 

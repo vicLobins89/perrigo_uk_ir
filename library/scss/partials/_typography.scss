@@ -45,10 +45,4 @@ FONT FACE
 // font stacks
 $sans-serif:        "Helvetica Neue LT Std", Helvetica, Arial, sans-serif;
 $serif:             "Georgia", Cambria, Times New Roman, Times, serif;
-$condensed:			"Helvetica Neue Bold Condensed", Helvetica, Arial, sans-serif;;
-
-p {
-  -ms-word-wrap: break-word;
-  word-break: break-word; //non-standart css for webkit
-  word-wrap: break-word;
-}
+$condensed:			"Helvetica Neue Bold Condensed", Helvetica, Arial, sans-serif;
