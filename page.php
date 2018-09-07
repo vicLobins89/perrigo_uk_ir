@@ -47,10 +47,12 @@
 											<div class="pin<?php echo ' ' . str_replace('&', '', str_replace(' ', '-', strtolower( get_sub_field('country') ))); ?>">
 												<img src="<?php echo get_template_directory_uri(); ?>/library/images/icon-pin.png" alt="<?php echo get_sub_field('country'); ?>">
 												
+												<?php if( get_sub_field('copy') ) : ?>
 												<div class="description cf">
 													<h3><?php echo get_sub_field('country'); ?></h3>
-													<?php echo the_sub_field('copy'); ?>
+													<?php echo get_sub_field('copy'); ?>
 												</div>
+												<?php endif; ?>
 											</div>
 										<?php endwhile; endif; ?>
 									</section>
