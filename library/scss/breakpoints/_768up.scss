@@ -342,9 +342,14 @@ POSTS & CONTENT STYLES
 }
 
 .page-title {
-	left: 10%;
-	width: 55%;
+	left: 0;
+	width: 100%;
 	font-size: 1rem;
+	padding-left: 10%;
+	
+	p {
+		width: 45%;
+	}
 }
 
 .entry-content {

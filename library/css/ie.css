@@ -431,9 +431,12 @@ POSTS & CONTENT STYLES
   margin-left: auto; }
 
 .page-title {
-  left: 10%;
-  width: 55%;
-  font-size: 1rem; }
+  left: 0;
+  width: 100%;
+  font-size: 1rem;
+  padding-left: 10%; }
+  .page-title p {
+    width: 45%; }
 
 .entry-content {
   padding: 5rem 4rem;
