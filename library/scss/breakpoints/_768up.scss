@@ -61,6 +61,7 @@ HEADER STYLES
 		background: darken($blue, 10%);
 		width: 7rem;
 		padding: 1.2rem;
+		margin-top: 0;
 		
 		&:after {
 			border-top: 5rem solid darken($blue, 10%);
@@ -348,8 +349,12 @@ POSTS & CONTENT STYLES
 	padding-left: 10%;
 	
 	p {
-		width: 45%;
+		width: 38%;
 	}
+}
+
+.detail-bottom {
+    width: 36%;
 }
 
 .entry-content {
@@ -861,9 +866,46 @@ SIDEBARS & ASIDES
 FOOTER STYLES
 *********************/
 
+.footer-panel {
+	.widget_media_image {
+		display: block;
+		float: left;
+		font-size: 0;
+		position: relative;
+		width: 55%;
+		
+		img {
+			
+		}
+		
+		&:after {
+			content: '';
+			position: absolute;
+			display: block;
+			width: 0;
+			height: 0;
+    		border-bottom: 50rem solid darken($blue, 10%);
+			border-left: 18rem solid transparent;
+			z-index: 10;
+			left: calc(100% - 18rem);
+			bottom: 0;
+		}
+	}
+	
+	.widget_text {
+		float: right;
+		width: 45%;
+		
+		.textwidget {
+			padding: 2rem 4rem 0 0;
+			max-width: 500px;
+		}
+	}
+}
+
 .footer {
 	padding: 2.5rem 4rem;
-	margin-top: 4rem;
+	margin-top: 1rem;
 	
 	&:before {
 		width: 15%;

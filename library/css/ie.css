@@ -134,6 +134,9 @@ GENERAL STYLES
 html {
   font-size: 13px; }
 
+.page-title p {
+  width: 55%; }
+
 /*********************
 NAVIGATION STYLES
 *********************/
@@ -214,7 +217,8 @@ HEADER STYLES
   .footer .logo {
     background: #1b224b;
     width: 7rem;
-    padding: 1.2rem; }
+    padding: 1.2rem;
+    margin-top: 0; }
     .footer .logo:after {
       border-top: 5rem solid #1b224b;
       border-right: 2.85rem solid transparent; }
@@ -436,7 +440,10 @@ POSTS & CONTENT STYLES
   font-size: 1rem;
   padding-left: 10%; }
   .page-title p {
-    width: 45%; }
+    width: 38%; }
+
+.detail-bottom {
+  width: 36%; }
 
 .entry-content {
   padding: 5rem 4rem;
@@ -749,9 +756,33 @@ SIDEBARS & ASIDES
 /*********************
 FOOTER STYLES
 *********************/
+.footer-panel .widget_media_image {
+  display: block;
+  float: left;
+  font-size: 0;
+  position: relative;
+  width: 55%; }
+  .footer-panel .widget_media_image:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 50rem solid #1b224b;
+    border-left: 18rem solid transparent;
+    z-index: 10;
+    left: calc(100% - 18rem);
+    bottom: 0; }
+.footer-panel .widget_text {
+  float: right;
+  width: 45%; }
+  .footer-panel .widget_text .textwidget {
+    padding: 2rem 4rem 0 0;
+    max-width: 500px; }
+
 .footer {
   padding: 2.5rem 4rem;
-  margin-top: 4rem; }
+  margin-top: 1rem; }
   .footer:before {
     width: 15%;
     height: 220%; }

@@ -1,5 +1,7 @@
 <?php $options = get_option('rh_settings'); ?>
 
+			<?php get_sidebar('footer'); ?>
+
 			<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
 				<div id="inner-footer" class="cf">
